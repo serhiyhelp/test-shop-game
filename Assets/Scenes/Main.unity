@@ -258,6 +258,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6733441417434109357, guid: e256a86adcf817f46a7857325edce2b7, type: 3}
+      propertyPath: cloakT
+      value: 
+      objectReference: {fileID: 2800000, guid: 1967c815e58fcc848a23552727813c73, type: 3}
+    - target: {fileID: 6733441417434109357, guid: e256a86adcf817f46a7857325edce2b7, type: 3}
+      propertyPath: outfit
+      value: 
+      objectReference: {fileID: 604126286}
+    - target: {fileID: 6733441417434109357, guid: e256a86adcf817f46a7857325edce2b7, type: 3}
       propertyPath: outfitT
       value: 
       objectReference: {fileID: 0}
@@ -269,6 +277,10 @@ PrefabInstance:
       propertyPath: mainhandT
       value: 
       objectReference: {fileID: 2800000, guid: 714ca9f462f04d7408f020ac83f4b21e, type: 3}
+    - target: {fileID: 9027769691377269099, guid: e256a86adcf817f46a7857325edce2b7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9027769691856299760, guid: e256a86adcf817f46a7857325edce2b7, type: 3}
       propertyPath: m_Name
       value: Player
@@ -576,6 +588,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &604126286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9027769692864284370, guid: e256a86adcf817f46a7857325edce2b7, type: 3}
+  m_PrefabInstance: {fileID: 199658601}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &625691772
 GameObject:
   m_ObjectHideFlags: 0

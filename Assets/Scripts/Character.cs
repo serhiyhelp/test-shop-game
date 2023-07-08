@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ManaSeedTools.CharacterAnimator;
+using TMPro;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -75,13 +76,18 @@ public class Character : MonoBehaviour
         else if (id == RobeId)
         {
             equippedRobe = item;
-            _player.ChangeOutfit(item.equippedView);
+            _player.ChangeOutfit(item?.equippedView);
         }
         else
             inventory[id] = item;
     }
-    
-    
+
+    private void Start()
+    {
+        _player.ChangeOutfit(equippedRobe?.equippedView);
+        _player.ChangeHat(equippedHat?.equippedView);
+    }
+
     public void EquipHat(Item hat, int slotId)
     {
         

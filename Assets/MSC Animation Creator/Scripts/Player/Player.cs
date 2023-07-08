@@ -43,6 +43,7 @@ namespace ManaSeedTools.CharacterAnimator
 
         public GameObject hat;
         public GameObject hair;
+        public GameObject outfit;
         public Texture2D  toolTexture;
 
         [Header("BasePath of textures for runtime")]
@@ -96,12 +97,6 @@ namespace ManaSeedTools.CharacterAnimator
 
             EventHandler.CallMovementEvent(xInput, yInput, moveType, playerDirection, this, testTrigger);
             testTrigger = null;
-
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                SwapHatButton();
-                SetTexture(altShirt, "outfit");
-            }
         }
 
         private void FixedUpdate()
@@ -327,23 +322,32 @@ namespace ManaSeedTools.CharacterAnimator
             testTrigger = trigger;
         }
 
-        public void SwapHatButton()
+        public void ChangeHat(Texture2D newTexture)
         {
-            if (hat.activeInHierarchy)
-            {
-                hat.SetActive(false);
-                hair.SetActive(true);
-            }
-            else
+            if (newTexture)
             {
                 hat.SetActive(true);
                 hair.SetActive(false);
+                SetTexture(newTexture, "hat");
+            }
+            else
+            {
+                hat.SetActive(false);
+                hair.SetActive(true);
             }
         }
 
         public void ChangeOutfit(Texture2D newTexture)
         {
-            SetTexture(newTexture, "cloak");
+            if (newTexture)
+            {
+                outfit.SetActive(true);
+                SetTexture(newTexture, "outfit");
+            }
+            else
+            {
+                outfit.SetActive(false);
+            }
         }
 
         public void SwapTextureButton(Texture2D newTexture)
