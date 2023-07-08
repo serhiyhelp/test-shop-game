@@ -17,5 +17,5 @@ MonoBehaviour:
   uiView: {fileID: 1457275784, guid: a5637259dea0b5046a90390bbc335cd1, type: 3}
   equippedView: {fileID: 2800000, guid: a5637259dea0b5046a90390bbc335cd1, type: 3}
   onGroundView: {fileID: 1457275784, guid: a5637259dea0b5046a90390bbc335cd1, type: 3}
-  basePrice: 500
+  basePrice: 200
   type: 2

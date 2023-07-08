@@ -9,13 +9,19 @@ public class DndItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 {
     [SerializeField] private Image         _image;
     [SerializeField] private RectTransform _rectTransform;
-    
+
+    private Item _item;
+
     public Item Item
     {
-        get;
-        set;
+        get => _item;
+        set
+        {
+            _item = value;
+            _image.sprite = Item.uiView;
+        }
     }
-    
+
     public Slot Container
     {
         get;
@@ -24,9 +30,8 @@ public class DndItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
     public void Init(Slot container, Item item)
     {
-        Item          = item;
-        _image.sprite = Item.uiView;
-        Container     = container;
+        Item      = item;
+        Container = container;
     }
     
     public void OnBeginDrag(PointerEventData eventData)

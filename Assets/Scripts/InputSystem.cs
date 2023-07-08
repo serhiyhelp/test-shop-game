@@ -15,6 +15,10 @@ public class InputSystem : MonoBehaviour
         {
             GlobalEvents.TimeToOpenInventory.Invoke(false);
         }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            GlobalEvents.Engagement.Invoke();
+        }
         
     }
 }

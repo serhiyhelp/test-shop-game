@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class Slot : MonoBehaviour, IDropHandler
 {
-    public UnityEvent<Item, int> contentChanged;
+    public UnityEvent<Item, Slot> contentChanged;
     public RectTransform         rectTransform;
     public DndItem               dndPrefab;
     public ClothType             Filter;
@@ -25,7 +25,7 @@ public class Slot : MonoBehaviour, IDropHandler
     }
     
 
-    public void Init(int id, Item item, UnityAction<Item, int> contentChangedAction)
+    public void Init(int id, Item item)
     {
         Id = id;
         if (item != null)
@@ -33,7 +33,31 @@ public class Slot : MonoBehaviour, IDropHandler
             Content = Instantiate(dndPrefab, transform);
             Content.Init(this, item);
         }
-        contentChanged.AddListener(contentChangedAction);
+        //contentChanged.AddListener(contentChangedAction);
+    }
+
+    public void AcceptItem(Item item)
+    {
+        if (item)
+        {
+            if (Content == null)
+            {
+                Content = Instantiate(dndPrefab, transform);
+                Content.Init(this, item);
+            }
+            else
+            {
+                Content.Item = item;
+            }
+        }
+        else
+        {
+            if (Content)
+            {
+                Destroy(Content.gameObject);
+                Content = null;
+            }
+        }
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -49,12 +73,14 @@ public class Slot : MonoBehaviour, IDropHandler
                 Content.Container = oppositeSlot;
                 this.Content.MoveToContainer();
             }
-            oppositeSlot.contentChanged.Invoke(this.Content?.Item, oppositeSlot.Id);
+            oppositeSlot.contentChanged.Invoke(this.Content?.Item, oppositeSlot);
 
             this.Content      = dropped;
             dropped.Container = this;
             dropped.MoveToContainer();
-            contentChanged.Invoke(Content.Item, Id);
+            contentChanged.Invoke(Content.Item, this);
+            
+            GlobalEvents.InterSlotExchange.Invoke(this, oppositeSlot);
         }
     }
 

@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using ManaSeedTools.CharacterAnimator;
-using TMPro;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -11,6 +7,9 @@ public class Character : MonoBehaviour
     [SerializeField] private Item   equippedHat;
     [SerializeField] private Item   equippedRobe;
     [SerializeField] private Player _player;
+
+    [SerializeField] private int money = 225;
+    
 
     public Item[] Inventory
     {
@@ -38,6 +37,12 @@ public class Character : MonoBehaviour
     public int RobeId
     {
         get => -2;
+    }
+
+    public int Money
+    {
+        get => money;
+        set => money = value;
     }
 
     private void OnEnable()
