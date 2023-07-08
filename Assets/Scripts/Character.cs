@@ -72,6 +72,7 @@ public class Character : MonoBehaviour
         if (id == HatId)
         {
             equippedHat = item;
+            _player.ChangeHat(item?.equippedView);
         }
         else if (id == RobeId)
         {
