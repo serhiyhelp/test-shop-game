@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -1522,16 +1522,15 @@ TextureImporter:
       char_a_p1_4har_dap1_v01_30: -538135840
       char_a_p1_4har_dap1_v01_41: -1244773266
       char_a_p1_4har_dap1_v01_7: 787610913
-      char_a_p1_4har_dap1_v01_32: 1728713019
+      char_a_p1_4har_dap1_v01_17: -1976503706
       char_a_p1_4har_dap1_v01_9: -299341637
       char_a_p1_4har_dap1_v01_22: 1942882324
       char_a_p1_4har_dap1_v01_16: -2133644116
       char_a_p1_4har_dap1_v01_44: -1792686106
       char_a_p1_4har_dap1_v01_40: 1560429310
       char_a_p1_4har_dap1_v01_21: 1882708683
-      char_a_p1_4har_dap1_v01_17: -1976503706
-      char_a_p1_4har_dap1_v01_37: -2140713574
       char_a_p1_4har_dap1_v01_58: -1013339521
+      char_a_p1_4har_dap1_v01_37: -2140713574
       char_a_p1_4har_dap1_v01_50: -166594474
       char_a_p1_4har_dap1_v01_29: -1816316713
       char_a_p1_4har_dap1_v01_11: 1524540490
@@ -1541,9 +1540,10 @@ TextureImporter:
       char_a_p1_4har_dap1_v01_25: -2115343514
       char_a_p1_4har_dap1_v01_55: 2105757345
       char_a_p1_4har_dap1_v01_4: -743926797
-      char_a_p1_4har_dap1_v01_63: -502124712
+      char_a_p1_4har_dap1_v01_32: 1728713019
       char_a_p1_4har_dap1_v01_15: 1657073642
       char_a_p1_4har_dap1_v01_31: 39006122
+      char_a_p1_4har_dap1_v01_63: -502124712
       char_a_p1_4har_dap1_v01_42: -1311790281
       char_a_p1_4har_dap1_v01_53: -234638269
       char_a_p1_4har_dap1_v01_45: 839723828

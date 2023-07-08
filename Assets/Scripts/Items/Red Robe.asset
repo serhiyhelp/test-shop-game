@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69d374949a118734a9191f9fdfc33d2e, type: 3}
+  m_Name: Red Robe
+  m_EditorClassIdentifier: 
+  title: Red Robe
+  description: Red and cool!
+  uiView: {fileID: 1581994017, guid: 3ab31ec79d026a64189f1dcd3eb10591, type: 3}
+  equippedView: {fileID: 2800000, guid: 3ab31ec79d026a64189f1dcd3eb10591, type: 3}
+  onGroundView: {fileID: 1581994017, guid: 3ab31ec79d026a64189f1dcd3eb10591, type: 3}
+  basePrice: 500
+  type: 2

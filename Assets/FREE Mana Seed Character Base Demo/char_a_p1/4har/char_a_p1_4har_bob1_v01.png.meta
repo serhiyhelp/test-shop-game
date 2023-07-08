@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -1497,11 +1497,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      char_a_p1_4har_bob1_v01_42: -860172452
+      char_a_p1_4har_bob1_v01_8: -1255853166
       char_a_p1_4har_bob1_v01_16: -1770886720
       char_a_p1_4har_bob1_v01_21: -587285242
       char_a_p1_4har_bob1_v01_50: -476699879
-      char_a_p1_4har_bob1_v01_58: -700671067
       char_a_p1_4har_bob1_v01_0: -1724159680
       char_a_p1_4har_bob1_v01_63: 1866856590
       char_a_p1_4har_bob1_v01_34: 1731333735
@@ -1545,22 +1544,23 @@ TextureImporter:
       char_a_p1_4har_bob1_v01_31: 1802000128
       char_a_p1_4har_bob1_v01_51: -8778113
       char_a_p1_4har_bob1_v01_53: 1888675760
+      char_a_p1_4har_bob1_v01_58: -700671067
       char_a_p1_4har_bob1_v01_40: 1532598020
-      char_a_p1_4har_bob1_v01_24: 980436585
       char_a_p1_4har_bob1_v01_23: 414651555
+      char_a_p1_4har_bob1_v01_24: 980436585
       char_a_p1_4har_bob1_v01_26: -2041638617
-      char_a_p1_4har_bob1_v01_45: -638264260
       char_a_p1_4har_bob1_v01_10: -1171829273
       char_a_p1_4har_bob1_v01_17: 1587161456
+      char_a_p1_4har_bob1_v01_45: -638264260
       char_a_p1_4har_bob1_v01_14: 1195093079
-      char_a_p1_4har_bob1_v01_19: -787124477
       char_a_p1_4har_bob1_v01_35: 223145266
       char_a_p1_4har_bob1_v01_57: 117955484
+      char_a_p1_4har_bob1_v01_19: -787124477
       char_a_p1_4har_bob1_v01_2: 1730725839
       char_a_p1_4har_bob1_v01_7: 2061957074
       char_a_p1_4har_bob1_v01_39: 863423547
       char_a_p1_4har_bob1_v01_18: -362082376
-      char_a_p1_4har_bob1_v01_8: -1255853166
+      char_a_p1_4har_bob1_v01_42: -860172452
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

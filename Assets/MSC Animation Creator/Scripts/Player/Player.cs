@@ -341,6 +341,11 @@ namespace ManaSeedTools.CharacterAnimator
             }
         }
 
+        public void ChangeOutfit(Texture2D newTexture)
+        {
+            SetTexture(newTexture, "cloak");
+        }
+
         public void SwapTextureButton(Texture2D newTexture)
         {
             Debug.Log(newTexture);

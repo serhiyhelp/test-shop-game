@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -1520,14 +1520,14 @@ TextureImporter:
       char_a_p1_5hat_pfht_v04_37: -919343228
       char_a_p1_5hat_pfht_v04_19: 1725649075
       char_a_p1_5hat_pfht_v04_57: -1500939020
-      char_a_p1_5hat_pfht_v04_25: -1793920163
-      char_a_p1_5hat_pfht_v04_18: 89668406
-      char_a_p1_5hat_pfht_v04_41: 1316963931
-      char_a_p1_5hat_pfht_v04_3: 1482128885
-      char_a_p1_5hat_pfht_v04_22: 86057583
-      char_a_p1_5hat_pfht_v04_31: -1898802665
-      char_a_p1_5hat_pfht_v04_38: -1854548297
       char_a_p1_5hat_pfht_v04_49: 349962844
+      char_a_p1_5hat_pfht_v04_25: -1793920163
+      char_a_p1_5hat_pfht_v04_3: 1482128885
+      char_a_p1_5hat_pfht_v04_41: 1316963931
+      char_a_p1_5hat_pfht_v04_18: 89668406
+      char_a_p1_5hat_pfht_v04_31: -1898802665
+      char_a_p1_5hat_pfht_v04_22: 86057583
+      char_a_p1_5hat_pfht_v04_38: -1854548297
       char_a_p1_5hat_pfht_v04_15: 35421999
       char_a_p1_5hat_pfht_v04_62: 1955701565
       char_a_p1_5hat_pfht_v04_43: -669755252
