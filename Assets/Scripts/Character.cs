@@ -94,18 +94,17 @@ public class Character : MonoBehaviour
         _player.ChangeHat(equippedHat?.equippedView);
     }
 
-    public void EquipHat(Item hat, int slotId)
+    public bool TryPickUpItem(Item item)
     {
-        
-    }
+        for (int i = 0; i < inventory.Length; i++)
+        {
+            if (inventory[i] == null)
+            {
+                inventory[i] = item;
+                return true;
+            }
+        }
 
-    public void EquipRobe(Item robe)
-    {
-        
-    }
-
-    private void OnHatChanged()
-    {
-        
+        return false;
     }
 }

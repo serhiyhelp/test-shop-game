@@ -9,15 +9,11 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Character target;
     [Space]
     [SerializeField] private GameObject _view;
-    [SerializeField] private Slot      hatSlot;
-    [SerializeField] private Slot      robeSlot;
-    [SerializeField] private Transform grid;
-    [SerializeField] private Slot      cellPrefab;
-    [SerializeField] private TMP_Text  moneyDisplay;
-
-    [Space]
-    [SerializeField] private int cellsPerRow = 4;
-    [SerializeField] private float spacing = 50f;
+    [SerializeField] private Slot          hatSlot;
+    [SerializeField] private Slot          robeSlot;
+    [SerializeField] private RectTransform grid;
+    [SerializeField] private Slot          cellPrefab;
+    [SerializeField] private TMP_Text      moneyDisplay;
 
     private Slot[] _gridSlots;
     
@@ -35,23 +31,14 @@ public class Inventory : MonoBehaviour
         hatSlot.Init(target.HatId, target.EquippedHat);
         robeSlot.Init(target.RobeId, target.EquippedRobe);
         
-        int column = 0, row = 0;
         _gridSlots = new Slot[target.Inventory.Length];
+        Slot cell = null;
         for (var i = 0; i < target.Inventory.Length; i++)
         {
-            var cell = Instantiate(cellPrefab, grid);
-            cell.rectTransform.anchoredPosition = new Vector2(column * spacing, -row * spacing);
+            cell = Instantiate(cellPrefab, grid);
             cell.Init(i, target.Inventory[i]);
             _gridSlots[i] = cell;
-
-            column++;
-            if (column >= cellsPerRow)
-            {
-                column = 0;
-                row++;
-            }
         }
-        
     }
 
     private void OnNewItemPutInSlot(Item item, Slot slot)

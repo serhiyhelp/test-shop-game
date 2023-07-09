@@ -53,7 +53,7 @@ public class TradingWindow : MonoBehaviour
         for (var i = 0; i < inventoryLength; i++)
         {
             var cell = Instantiate(cellPrefab, merchantGrid);
-            cell.rectTransform.anchoredPosition = new Vector2(column * spacing, -row * spacing);
+            //cell.rectTransform.anchoredPosition = new Vector2(column * spacing, -row * spacing);
             cell.Init(i, null);
             _merchantSlots[i] = cell;
 
@@ -70,7 +70,7 @@ public class TradingWindow : MonoBehaviour
         for (var i = 0; i < target.Inventory.Length; i++)
         {
             var cell = Instantiate(cellPrefab, playerGrid);
-            cell.rectTransform.anchoredPosition = new Vector2(column * spacing, -row * spacing);
+            //cell.rectTransform.anchoredPosition = new Vector2(column * spacing, -row * spacing);
             cell.Init(i, target.Inventory[i]);
             _playerSlots[i] = cell;
 

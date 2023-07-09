@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69d374949a118734a9191f9fdfc33d2e, type: 3}
+  m_Name: Wizard Hat
+  m_EditorClassIdentifier: 
+  title: Wizard Hat
+  description: Makes you look magical.
+  uiView: {fileID: -1172624245, guid: 63d93b63e076a874d936d33ecbddbe04, type: 3}
+  equippedView: {fileID: 2800000, guid: b5e49b70edcc6e94995113e41da8c910, type: 3}
+  onGroundView: {fileID: -1172624245, guid: 63d93b63e076a874d936d33ecbddbe04, type: 3}
+  basePrice: 200
+  type: 1
