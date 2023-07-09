@@ -2,18 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
 public class TradingWindow : MonoBehaviour
 {
-    [SerializeField] private Character  target;
-    [SerializeField] private GameObject _view;
-    [SerializeField] private Transform  merchantGrid;
-    [SerializeField] private Transform  playerGrid;
-    [SerializeField] private Slot       cellPrefab;
-    [SerializeField] private TMP_Text   moneyDisplay;
-    [SerializeField] private TMP_Text   acceptButtonLabel;
+    [SerializeField] private Character target;
+    [Space]
+    [SerializeField] private RectTransform leftView;
+    [SerializeField] private RectTransform rightView;
+    [SerializeField] private GameObject    staticView;
+    [Space]
+    [SerializeField] private Transform merchantGrid;
+    [SerializeField] private Transform playerGrid;
+    [SerializeField] private Slot      cellPrefab;
+    [SerializeField] private TMP_Text  moneyDisplay;
+    [SerializeField] private TMP_Text  acceptButtonLabel;
 
     [SerializeField] private int inventoryLength = 45;
     
@@ -26,7 +31,9 @@ public class TradingWindow : MonoBehaviour
     private Merchant _merchant;
     private string   acceptButtonFormat;
 
-    private int totalPrice;
+    private int   totalPrice;
+    private float xLeftPosition;
+    private float xRightPosition;
     
     
     private void OnEnable()
@@ -46,6 +53,12 @@ public class TradingWindow : MonoBehaviour
 
     private void Start()
     {
+        staticView.SetActive(false);
+        xLeftPosition  = leftView.position.x;
+        xRightPosition = rightView.position.x;
+        leftView.Translate(-Screen.width/2, 0, 0);
+        rightView.Translate(Screen.width/2, 0, 0);
+        
         _merchantSlots = new Slot[inventoryLength];
         for (var i = 0; i < inventoryLength; i++)
         {
@@ -66,7 +79,6 @@ public class TradingWindow : MonoBehaviour
 
     public void Show(Merchant merchant)
     {
-        _view.SetActive(true);
         acceptButtonLabel.text     = string.Format(acceptButtonFormat, 0);
         totalPrice                 = 0;
         _merchant                  = merchant;
@@ -84,13 +96,17 @@ public class TradingWindow : MonoBehaviour
         }
         
         GlobalEvents.InterSlotExchange.AddListener(OnExchange);
+        
+        staticView.SetActive(true);
+        rightView.DOMoveX(xRightPosition, 0.6f);
+        leftView.DOMoveX(xLeftPosition, 0.6f);
     }
 
     public void Decline()
     {
         _merchant.Inventory = _merchantOriginalInventory;
         target.Inventory    = _playerOriginalInventory;
-        _view.SetActive(false);
+        Hide();
         _merchant.UpdateInteractionTime();
         GlobalEvents.InterSlotExchange.RemoveListener(OnExchange);
     }
@@ -100,10 +116,17 @@ public class TradingWindow : MonoBehaviour
         if (target.Money >= totalPrice)
         {
             target.Money -= totalPrice;
-            _view.SetActive(false);
+            Hide();
             _merchant.UpdateInteractionTime();
             GlobalEvents.InterSlotExchange.RemoveListener(OnExchange);
         }
+    }
+
+    private void Hide()
+    {
+        staticView.SetActive(false);
+        rightView.DOMoveX(xRightPosition + Screen.width/2, 0.6f);
+        leftView.DOMoveX(xLeftPosition - Screen.width/2, 0.6f);
     }
 
     private void OnExchange(Slot slot1, Slot slot2)

@@ -42,6 +42,8 @@ public class ToolTip : MonoBehaviour
         if (mPos.x < width2) mPos.x                = width2;
         if (mPos.x > Screen.width - width2) mPos.x = Screen.width - width2;
 
+        mPos.y -= 10;
+
         tooltip.transform.position = mPos;
 
         title.text       = itemToShow.title;

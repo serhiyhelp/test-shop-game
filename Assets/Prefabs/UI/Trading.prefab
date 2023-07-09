@@ -1484,7 +1484,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  _view: {fileID: 3508194169014755440}
+  leftView: {fileID: 3508194168718553796}
+  rightView: {fileID: 3508194168092415703}
+  staticView: {fileID: 2705562065783779434}
   merchantGrid: {fileID: 2017779125602019230}
   playerGrid: {fileID: 2072629959846640439}
   cellPrefab: {fileID: 2646299855360693642, guid: 1a8b09be4ed533d4b9039f643ef28df0, type: 3}

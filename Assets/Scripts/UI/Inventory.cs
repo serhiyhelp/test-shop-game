@@ -1,14 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private Character target;
+
     [Space]
-    [SerializeField] private GameObject _view;
+    [SerializeField] private RectTransform view;
     [SerializeField] private Slot          hatSlot;
     [SerializeField] private Slot          robeSlot;
     [SerializeField] private RectTransform grid;
@@ -16,6 +18,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] private TMP_Text      moneyDisplay;
 
     private Slot[] _gridSlots;
+
+    private float xViewPosition;
     
     private void OnEnable()
     {
@@ -28,6 +32,10 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
+        view.gameObject.SetActive(true);
+        xViewPosition = view.position.x;
+        view.Translate(Screen.width/2, 0, 0);
+        
         hatSlot.Init(target.HatId, target.EquippedHat);
         robeSlot.Init(target.RobeId, target.EquippedRobe);
         
@@ -48,7 +56,6 @@ public class Inventory : MonoBehaviour
 
     private void ChangeViewVisibility(bool show)
     {
-        _view.SetActive(show);
         if (show)
         {
             GlobalEvents.InterSlotExchange.AddListener(OnExchange);
@@ -59,10 +66,12 @@ public class Inventory : MonoBehaviour
             {
                 _gridSlots[i].AcceptItem(target.Inventory[i]);
             }
-            
+
+            view.DOMoveX(xViewPosition, 0.6f);
         }
         else
         {
+            view.DOMoveX(Screen.width / 2 + xViewPosition, 0.6f);
             GlobalEvents.InterSlotExchange.RemoveListener(OnExchange);
         }
     }
