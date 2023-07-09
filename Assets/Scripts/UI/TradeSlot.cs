@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class PriceTag : MonoBehaviour
+public class TradeSlot : MonoBehaviour
 {
-    [SerializeField] private Slot     owner;
-    [SerializeField] private TMP_Text label;
+    [SerializeField] private Slot       owner;
+    [SerializeField] private TMP_Text   priceTag;
+    [SerializeField] private GameObject tradeIndicator;
 
     private void OnEnable()
     {
@@ -21,10 +23,12 @@ public class PriceTag : MonoBehaviour
     private void Start()
     {
         OnOwnerContentChanged(owner.Content?.Item, null);
+        tradeIndicator.SetActive(false);
     }
 
     private void OnOwnerContentChanged(Item item, Slot _)
     {
-        label.text = item != null ? item.basePrice.ToString() : "";
+        priceTag.text = item != null ? item.basePrice.ToString() : "";
+        tradeIndicator.SetActive(item && owner.IsOwnedByMerchant != owner.Content.MerchantOrigin);
     }
 }

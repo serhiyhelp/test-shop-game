@@ -26,15 +26,22 @@ public class Slot : MonoBehaviour, IDropHandler
         get;
         private set;
     }
+
+    public bool IsOwnedByMerchant
+    {
+        get;
+        private set;
+    }
     
 
-    public void Init(int id, Item item)
+    public void Init(int id, Item item, bool isOwnedByMerchant = false)
     {
-        Id = id;
+        Id                = id;
+        IsOwnedByMerchant = isOwnedByMerchant;
         if (item != null)
         {
             Content = Instantiate(dndPrefab, transform);
-            Content.Init(this, item);
+            Content.Init(this, item, isOwnedByMerchant);
             if (placeholder) placeholder.SetActive(false);
         }
         //contentChanged.AddListener(contentChangedAction);
@@ -47,7 +54,7 @@ public class Slot : MonoBehaviour, IDropHandler
             if (Content == null)
             {
                 Content = Instantiate(dndPrefab, transform);
-                Content.Init(this, item);
+                Content.Init(this, item, IsOwnedByMerchant);
                 if (placeholder) placeholder.SetActive(false);
             }
             else

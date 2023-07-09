@@ -50,7 +50,7 @@ public class TradingWindow : MonoBehaviour
         for (var i = 0; i < inventoryLength; i++)
         {
             var cell = Instantiate(cellPrefab, merchantGrid);
-            cell.Init(i, null);
+            cell.Init(i, null, true);
             _merchantSlots[i] = cell;
 
         }

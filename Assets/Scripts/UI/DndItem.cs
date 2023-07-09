@@ -17,6 +17,12 @@ public class DndItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     private float   lastTimeMouseMoved;
     private Vector3 lastMousePos;
 
+    public bool MerchantOrigin
+    {
+        get;
+        private set;
+    }
+
     public Item Item
     {
         get => _item;
@@ -33,10 +39,11 @@ public class DndItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         set;
     }
 
-    public void Init(Slot container, Item item)
+    public void Init(Slot container, Item item, bool merchantOrigin = false)
     {
-        Item      = item;
-        Container = container;
+        Item           = item;
+        Container      = container;
+        MerchantOrigin = merchantOrigin;
     }
 
     public void Update()
