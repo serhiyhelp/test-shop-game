@@ -5,7 +5,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class InventoryWindow : MonoBehaviour
 {
     [SerializeField] private Character target;
 
@@ -19,14 +19,12 @@ public class Inventory : MonoBehaviour
     private Slot[] _gridSlots;
 
     private float xViewPosition;
-
     private bool isShown;
     
     private void OnEnable()
     {
         GlobalEvents.GameStateChanged.AddListener(OnGameStateChanged);
     }
-
 
     private void OnDisable()
     {

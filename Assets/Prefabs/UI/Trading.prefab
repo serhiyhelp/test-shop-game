@@ -528,7 +528,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7662848281997141784}
   m_HandleRect: {fileID: 3514491552528533013}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1443,6 +1443,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3508194168034518049}
   - component: {fileID: 6317393566981769938}
+  - component: {fileID: 4019292603350637600}
+  - component: {fileID: 389218012340205693}
   m_Layer: 5
   m_Name: Trading
   m_TagString: Untagged
@@ -1490,10 +1492,48 @@ MonoBehaviour:
   merchantGrid: {fileID: 2017779125602019230}
   playerGrid: {fileID: 2072629959846640439}
   cellPrefab: {fileID: 2646299855360693642, guid: 1a8b09be4ed533d4b9039f643ef28df0, type: 3}
-  moneyDisplay: {fileID: 3508194168484617887}
   acceptButtonLabel: {fileID: 3508194168596433738}
   acceptButton: {fileID: 3508194167309723765}
   inventoryLength: 45
+--- !u!223 &4019292603350637600
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3508194168034518048}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &389218012340205693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3508194168034518048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &3508194168092415702
 GameObject:
   m_ObjectHideFlags: 0

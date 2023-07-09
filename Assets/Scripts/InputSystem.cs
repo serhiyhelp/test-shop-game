@@ -13,11 +13,18 @@ public class InputSystem : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
-            GameState.Current = new FreeState();
+            if (GameState.Current is FreeState)
+                GameState.Current = new QuitState();
+            else 
+                GameState.Current = new FreeState();
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {
             GlobalEvents.Interaction.Invoke();
+        }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            GameState.Current = new QuitState();
         }
         
     }
