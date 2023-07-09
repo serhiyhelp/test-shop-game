@@ -3868,6 +3868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 199658603}
+  view: {fileID: 587520284}
   label: {fileID: 18435263}
 --- !u!1 &903999250
 GameObject:

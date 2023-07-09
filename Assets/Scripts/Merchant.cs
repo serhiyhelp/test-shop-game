@@ -16,11 +16,11 @@ public class Merchant : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        GlobalEvents.Engagement.AddListener(OnEngagement);
+        GlobalEvents.Interaction.AddListener(OnInteraction);
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        GlobalEvents.Engagement.RemoveListener(OnEngagement);
+        GlobalEvents.Interaction.RemoveListener(OnInteraction);
     }
 
     public void UpdateInteractionTime()
@@ -28,7 +28,7 @@ public class Merchant : MonoBehaviour
         lastInteractionTime = Time.time;
     }
 
-    private void OnEngagement()
+    private void OnInteraction()
     {
         if (Time.time - lastInteractionTime > itemsChangeTimer)
         {
@@ -40,7 +40,7 @@ public class Merchant : MonoBehaviour
             }
         }
         UpdateInteractionTime();
-        GlobalEvents.Trade.Invoke(this);
+        GameState.Current = new TradeState(this);
     }
 
 }

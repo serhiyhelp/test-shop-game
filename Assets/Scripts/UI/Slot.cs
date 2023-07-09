@@ -8,18 +8,24 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour, IDropHandler
 {
-    [SerializeField] private GameObject placeholder;
+    [SerializeField] private GameObject    placeholder;
     [SerializeField] private RectTransform rectTransform;
     
-    public   DndItem       dndPrefab;
-    public   ClothType     Filter;
+    public DndItem   dndPrefab;
+    public ClothType Filter;
     
     public UnityEvent<Item, Slot> contentChanged;
 
+    private DndItem _content;
+
     public DndItem Content
     {
-        get;
-        set;
+        get => _content;
+        set
+        {
+            _content = value;
+            contentChanged?.Invoke(value?.Item, this);
+        }
     }
 
     public int Id
@@ -47,11 +53,11 @@ public class Slot : MonoBehaviour, IDropHandler
         IsOwnedByMerchant = isOwnedByMerchant;
         if (item != null)
         {
-            Content = Instantiate(dndPrefab, rectTransform);
-            Content.Init(this, item, isOwnedByMerchant);
+            var dndItem = Instantiate(dndPrefab, rectTransform);
+            dndItem.Init(this, item, IsOwnedByMerchant);
+            Content = dndItem;
             if (placeholder) placeholder.SetActive(false);
         }
-        //contentChanged.AddListener(contentChangedAction);
     }
 
     public void AcceptItem(Item item)
@@ -60,8 +66,9 @@ public class Slot : MonoBehaviour, IDropHandler
         {
             if (Content == null)
             {
-                Content = Instantiate(dndPrefab, rectTransform);
-                Content.Init(this, item, IsOwnedByMerchant);
+                var dndItem = Instantiate(dndPrefab, rectTransform);
+                dndItem.Init(this, item, IsOwnedByMerchant);
+                Content = dndItem;
                 if (placeholder) placeholder.SetActive(false);
             }
             else
@@ -100,14 +107,12 @@ public class Slot : MonoBehaviour, IDropHandler
                 this.Content.MoveToContainer();
             }
             
-            //oppositeSlot.contentChanged.Invoke(this.Content?.Item, oppositeSlot);
-            oppositeSlot.ContentChangedNotify();
+            //oppositeSlot.ContentChangedNotify();
 
             this.Content      = dropped;
             dropped.Container = this;
             dropped.MoveToContainer();
-            //contentChanged.Invoke(Content.Item, this);
-            ContentChangedNotify();
+            //ContentChangedNotify();
             
             GlobalEvents.InterSlotExchange.Invoke(this, oppositeSlot);
         }

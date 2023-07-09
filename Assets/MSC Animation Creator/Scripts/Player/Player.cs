@@ -369,6 +369,9 @@ namespace ManaSeedTools.CharacterAnimator
 
         private void PlayerMovementInput()
         {
+            if (!GameState.Current.MovementAllowed)
+                return;
+
             yInput = Input.GetAxisRaw("Vertical");
             xInput = Input.GetAxisRaw("Horizontal");
 

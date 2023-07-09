@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputSystem : MonoBehaviour
@@ -9,15 +6,18 @@ public class InputSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            GlobalEvents.TimeToOpenInventory.Invoke(true);
+            if (GameState.Current is FreeState)
+                GameState.Current = new InventoryState();
+            else if (GameState.Current is InventoryState)
+                GameState.Current = new FreeState();
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
-            GlobalEvents.TimeToOpenInventory.Invoke(false);
+            GameState.Current = new FreeState();
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {
-            GlobalEvents.Engagement.Invoke();
+            GlobalEvents.Interaction.Invoke();
         }
         
     }

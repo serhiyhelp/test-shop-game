@@ -32,20 +32,29 @@ public class TradingWindow : MonoBehaviour
 
     private Merchant _merchant;
     private string   acceptButtonFormat;
+    private bool     isShown;
 
     private int   totalPrice;
     private float xLeftPosition;
     private float xRightPosition;
     
-    
     private void OnEnable()
     {
-        GlobalEvents.Trade.AddListener(Show);
+        GlobalEvents.GameStateChanged.AddListener(OnGameStateChanged);
     }
+
 
     private void OnDisable()
     {
-        GlobalEvents.Trade.RemoveListener(Show);
+        GlobalEvents.GameStateChanged.AddListener(OnGameStateChanged);
+    }
+    
+    private void OnGameStateChanged(GameState newState)
+    {
+        if (newState is TradeState tradeState)
+            Show(tradeState.Merchant);
+        else if (isShown)
+            Decline();
     }
 
     private void Awake()
@@ -81,6 +90,9 @@ public class TradingWindow : MonoBehaviour
 
     public void Show(Merchant merchant)
     {
+        if (isShown) return;
+        isShown = true;
+
         acceptButtonLabel.text     = string.Format(acceptButtonFormat, 0);
         totalPrice                 = 0;
         _merchant                  = merchant;
@@ -117,12 +129,13 @@ public class TradingWindow : MonoBehaviour
 
     public void TryAccept()
     {
-        if (totalPrice!= 0 && target.Money >= totalPrice)
+        if (target.Money >= totalPrice)
         {
             target.Money -= totalPrice;
             Hide();
             _merchant.UpdateInteractionTime();
             GlobalEvents.InterSlotExchange.RemoveListener(OnExchange);
+            GameState.Current = new FreeState();
         }
     }
 
@@ -133,6 +146,9 @@ public class TradingWindow : MonoBehaviour
 
     private void Hide()
     {
+        if (!isShown) return;
+        isShown = false;
+        
         staticView.SetActive(false);
         rightView.DOMoveX(xRightPosition + Screen.width/2, 0.6f);
         leftView.DOMoveX(xLeftPosition - Screen.width/2, 0.6f);

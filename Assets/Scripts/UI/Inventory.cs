@@ -20,14 +20,26 @@ public class Inventory : MonoBehaviour
     private Slot[] _gridSlots;
 
     private float xViewPosition;
+
+    private bool isShown;
     
     private void OnEnable()
     {
-        GlobalEvents.TimeToOpenInventory.AddListener(ChangeViewVisibility);
+        GlobalEvents.GameStateChanged.AddListener(OnGameStateChanged);
     }
+
+
     private void OnDisable()
     {
-        GlobalEvents.TimeToOpenInventory.RemoveListener(ChangeViewVisibility);
+        GlobalEvents.GameStateChanged.AddListener(OnGameStateChanged);
+    }
+    
+    private void OnGameStateChanged(GameState newState)
+    {
+        if (newState is InventoryState)
+            Show();
+        else
+            Hide();
     }
 
     private void Start()
@@ -49,31 +61,30 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void OnNewItemPutInSlot(Item item, Slot slot)
+    private void Show()
     {
-        target.PutItemByInventoryId(item, slot.Id);
+        if (isShown) return;
+        isShown = true;
+
+        GlobalEvents.InterSlotExchange.AddListener(OnExchange);
+        moneyDisplay.text = target.Money.ToString();
+        hatSlot.AcceptItem(target.EquippedHat);
+        robeSlot.AcceptItem(target.EquippedRobe);
+        for (var i = 0; i < _gridSlots.Length; i++)
+        {
+            _gridSlots[i].AcceptItem(target.Inventory[i]);
+        }
+
+        view.DOMoveX(xViewPosition, 0.6f);
     }
 
-    private void ChangeViewVisibility(bool show)
+    private void Hide()
     {
-        if (show)
-        {
-            GlobalEvents.InterSlotExchange.AddListener(OnExchange);
-            moneyDisplay.text = target.Money.ToString();
-            hatSlot.AcceptItem(target.EquippedHat);
-            robeSlot.AcceptItem(target.EquippedRobe);
-            for (var i = 0; i < _gridSlots.Length; i++)
-            {
-                _gridSlots[i].AcceptItem(target.Inventory[i]);
-            }
-
-            view.DOMoveX(xViewPosition, 0.6f);
-        }
-        else
-        {
-            view.DOMoveX(Screen.width / 2 + xViewPosition, 0.6f);
-            GlobalEvents.InterSlotExchange.RemoveListener(OnExchange);
-        }
+        if (!isShown) return;
+        isShown = false;
+        
+        view.DOMoveX(Screen.width / 2 + xViewPosition, 0.6f);
+        GlobalEvents.InterSlotExchange.RemoveListener(OnExchange);
     }
 
     private void OnExchange(Slot slot1, Slot slot2)
