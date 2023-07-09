@@ -1,5 +1,6 @@
 using ManaSeedTools.CharacterAnimator;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Character : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class Character : MonoBehaviour
     [SerializeField] private Player _player;
 
     [SerializeField] private int money = 225;
-    
+
+    public UnityEvent<int> MoneyChanged;
 
     public Item[] Inventory
     {
@@ -42,7 +44,11 @@ public class Character : MonoBehaviour
     public int Money
     {
         get => money;
-        set => money = value;
+        set
+        {
+            money = value;
+            MoneyChanged?.Invoke(value);
+        }
     }
 
     private void OnEnable()

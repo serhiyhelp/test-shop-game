@@ -1492,6 +1492,7 @@ MonoBehaviour:
   cellPrefab: {fileID: 2646299855360693642, guid: 1a8b09be4ed533d4b9039f643ef28df0, type: 3}
   moneyDisplay: {fileID: 3508194168484617887}
   acceptButtonLabel: {fileID: 3508194168596433738}
+  acceptButton: {fileID: 3508194167309723765}
   inventoryLength: 45
 --- !u!1 &3508194168092415702
 GameObject:
@@ -1666,8 +1667,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1909,7 +1910,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Accept({0})
+  m_text: Accept [{0}]
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 294a7f8ce8e8e5448902bca1c25269e1, type: 2}
   m_sharedMaterial: {fileID: -3786161008276080293, guid: 294a7f8ce8e8e5448902bca1c25269e1, type: 2}
@@ -1936,8 +1937,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

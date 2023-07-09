@@ -5,6 +5,7 @@ using System.Linq;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TradingWindow : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class TradingWindow : MonoBehaviour
     [SerializeField] private Slot      cellPrefab;
     [SerializeField] private TMP_Text  moneyDisplay;
     [SerializeField] private TMP_Text  acceptButtonLabel;
+    [SerializeField] private Button    acceptButton;
 
     [SerializeField] private int inventoryLength = 45;
     
@@ -97,6 +99,8 @@ public class TradingWindow : MonoBehaviour
         
         GlobalEvents.InterSlotExchange.AddListener(OnExchange);
         
+        UpdateAcceptButton();
+        
         staticView.SetActive(true);
         rightView.DOMoveX(xRightPosition, 0.6f);
         leftView.DOMoveX(xLeftPosition, 0.6f);
@@ -113,13 +117,18 @@ public class TradingWindow : MonoBehaviour
 
     public void TryAccept()
     {
-        if (target.Money >= totalPrice)
+        if (totalPrice!= 0 && target.Money >= totalPrice)
         {
             target.Money -= totalPrice;
             Hide();
             _merchant.UpdateInteractionTime();
             GlobalEvents.InterSlotExchange.RemoveListener(OnExchange);
         }
+    }
+
+    public void UpdateAcceptButton()
+    {
+        acceptButton.interactable = totalPrice != 0 && target.Money >= totalPrice;
     }
 
     private void Hide()
@@ -155,6 +164,7 @@ public class TradingWindow : MonoBehaviour
             totalPrice             += playerSlot.Content?.Item.basePrice ?? 0;
             totalPrice             -= merchantSlot.Content?.Item.basePrice ?? 0;
             acceptButtonLabel.text =  string.Format(acceptButtonFormat, -totalPrice);
+            UpdateAcceptButton();
         }
     }
 }
