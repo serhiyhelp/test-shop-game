@@ -9,11 +9,12 @@ using UnityEngine.UI;
 public class Slot : MonoBehaviour, IDropHandler
 {
     [SerializeField] private GameObject placeholder;
+    [SerializeField] private RectTransform rectTransform;
+    
+    public   DndItem       dndPrefab;
+    public   ClothType     Filter;
     
     public UnityEvent<Item, Slot> contentChanged;
-    public RectTransform          rectTransform;
-    public DndItem                dndPrefab;
-    public ClothType              Filter;
 
     public DndItem Content
     {
@@ -32,7 +33,13 @@ public class Slot : MonoBehaviour, IDropHandler
         get;
         private set;
     }
-    
+
+    public RectTransform RectTransform
+    {
+        get => rectTransform;
+        set => rectTransform = value;
+    }
+
 
     public void Init(int id, Item item, bool isOwnedByMerchant = false)
     {
@@ -40,7 +47,7 @@ public class Slot : MonoBehaviour, IDropHandler
         IsOwnedByMerchant = isOwnedByMerchant;
         if (item != null)
         {
-            Content = Instantiate(dndPrefab, transform);
+            Content = Instantiate(dndPrefab, rectTransform);
             Content.Init(this, item, isOwnedByMerchant);
             if (placeholder) placeholder.SetActive(false);
         }
@@ -53,7 +60,7 @@ public class Slot : MonoBehaviour, IDropHandler
         {
             if (Content == null)
             {
-                Content = Instantiate(dndPrefab, transform);
+                Content = Instantiate(dndPrefab, rectTransform);
                 Content.Init(this, item, IsOwnedByMerchant);
                 if (placeholder) placeholder.SetActive(false);
             }
@@ -108,9 +115,9 @@ public class Slot : MonoBehaviour, IDropHandler
 
     private void OnValidate()
     {
-        if (!rectTransform)
+        if (!RectTransform)
         {
-            rectTransform = GetComponent<RectTransform>();
+            RectTransform = GetComponent<RectTransform>();
         }
     }
 }

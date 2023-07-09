@@ -82,14 +82,14 @@ public class DndItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        transform.SetParent(Container.rectTransform);
+        transform.SetParent(Container.RectTransform);
         _rectTransform.anchoredPosition = Vector2.zero;
         _image.raycastTarget            = true;
     }
 
     public void MoveToContainer()
     {
-        transform.SetParent(Container.rectTransform);
+        transform.SetParent(Container.RectTransform);
         _rectTransform.anchoredPosition = Vector2.zero;
     }
 
