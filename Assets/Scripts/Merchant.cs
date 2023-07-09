@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Merchant : MonoBehaviour
 {
-    [SerializeField] private float  _additionalPrice = 1.2f;
-    [SerializeField] private Item[] possibleItems;
-    [SerializeField] private int    maxItems         = 4;
-    [SerializeField] private float  itemsChangeTimer = 5f;
+    [SerializeField] private GameObject tip;
+    [SerializeField] private Item[]     possibleItems;
+    [SerializeField] private int        maxItems         = 4;
+    [SerializeField] private float      itemsChangeTimer = 5f;
 
     private float lastInteractionTime = -1000;
 
@@ -17,10 +17,12 @@ public class Merchant : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         GlobalEvents.Interaction.AddListener(OnInteraction);
+        tip.SetActive(true);
     }
     private void OnTriggerExit2D(Collider2D other)
     {
         GlobalEvents.Interaction.RemoveListener(OnInteraction);
+        tip.SetActive(false);
     }
 
     public void UpdateInteractionTime()

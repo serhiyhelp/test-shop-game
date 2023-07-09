@@ -11,6 +11,8 @@ public class ToolTip : MonoBehaviour
     [SerializeField] private TMP_Text      price;
     [SerializeField] private TMP_Text      description;
 
+    private Vector3 lastMousePos;
+
     public static ToolTip Instance
     {
         get;
@@ -30,6 +32,16 @@ public class ToolTip : MonoBehaviour
     private void Start()
     {
         Hide();
+    }
+    
+    public void Update()
+    {
+        if (IsShown && (Input.mousePosition - lastMousePos).sqrMagnitude > 1 )
+        {
+            Hide();
+        }
+        
+        lastMousePos = Input.mousePosition;
     }
 
     public void Show(Item itemToShow)

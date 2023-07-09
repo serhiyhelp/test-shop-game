@@ -1,20 +1,15 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class Slot : MonoBehaviour, IDropHandler
 {
-    [SerializeField] private GameObject    placeholder;
     [SerializeField] private RectTransform rectTransform;
+
+    [SerializeField] private DndItem   dndPrefab;
+    [SerializeField] private ClothType filter;
     
-    public DndItem   dndPrefab;
-    public ClothType Filter;
-    
-    public UnityEvent<Item, Slot> contentChanged;
+    public UnityEvent<Item> contentChanged;
 
     private DndItem _content;
 
@@ -24,7 +19,7 @@ public class Slot : MonoBehaviour, IDropHandler
         set
         {
             _content = value;
-            contentChanged?.Invoke(value?.Item, this);
+            contentChanged?.Invoke(value?.Item);
         }
     }
 
@@ -47,20 +42,13 @@ public class Slot : MonoBehaviour, IDropHandler
     }
 
 
-    public void Init(int id, Item item, bool isOwnedByMerchant = false)
+    public void Init(int id, bool isOwnedByMerchant = false)
     {
         Id                = id;
         IsOwnedByMerchant = isOwnedByMerchant;
-        if (item != null)
-        {
-            var dndItem = Instantiate(dndPrefab, rectTransform);
-            dndItem.Init(this, item, IsOwnedByMerchant);
-            Content = dndItem;
-            if (placeholder) placeholder.SetActive(false);
-        }
     }
 
-    public void AcceptItem(Item item)
+    public void SetItem(Item item)
     {
         if (item)
         {
@@ -69,11 +57,12 @@ public class Slot : MonoBehaviour, IDropHandler
                 var dndItem = Instantiate(dndPrefab, rectTransform);
                 dndItem.Init(this, item, IsOwnedByMerchant);
                 Content = dndItem;
-                if (placeholder) placeholder.SetActive(false);
             }
             else
             {
-                Content.Item = item;
+                Content.MerchantOrigin = IsOwnedByMerchant;
+                Content.Item           = item;
+                contentChanged.Invoke(item);
             }
         }
         else
@@ -82,20 +71,13 @@ public class Slot : MonoBehaviour, IDropHandler
             {
                 Destroy(Content.gameObject);
                 Content = null;
-                if (placeholder) placeholder.SetActive(true);
             }
         }
     }
 
-    private void ContentChangedNotify()
-    {
-        contentChanged.Invoke(Content?.Item, this);
-        if (placeholder) placeholder.SetActive(!Content);
-    }
-
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag.TryGetComponent<DndItem>(out var dropped) && (Filter == ClothType.None || Filter == dropped.Item.type))
+        if (eventData.pointerDrag.TryGetComponent<DndItem>(out var dropped) && (filter == ClothType.None || filter == dropped.Item.type))
         {
             var oppositeSlot = dropped.Container;
             if (oppositeSlot == this) return;
@@ -107,12 +89,9 @@ public class Slot : MonoBehaviour, IDropHandler
                 this.Content.MoveToContainer();
             }
             
-            //oppositeSlot.ContentChangedNotify();
-
             this.Content      = dropped;
             dropped.Container = this;
             dropped.MoveToContainer();
-            //ContentChangedNotify();
             
             GlobalEvents.InterSlotExchange.Invoke(this, oppositeSlot);
         }

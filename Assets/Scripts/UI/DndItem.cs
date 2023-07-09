@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -20,7 +17,7 @@ public class DndItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     public bool MerchantOrigin
     {
         get;
-        private set;
+        set;
     }
 
     public Item Item

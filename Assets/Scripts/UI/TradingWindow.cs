@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using TMPro;
@@ -18,7 +15,6 @@ public class TradingWindow : MonoBehaviour
     [SerializeField] private Transform merchantGrid;
     [SerializeField] private Transform playerGrid;
     [SerializeField] private Slot      cellPrefab;
-    [SerializeField] private TMP_Text  moneyDisplay;
     [SerializeField] private TMP_Text  acceptButtonLabel;
     [SerializeField] private Button    acceptButton;
 
@@ -74,7 +70,7 @@ public class TradingWindow : MonoBehaviour
         for (var i = 0; i < inventoryLength; i++)
         {
             var cell = Instantiate(cellPrefab, merchantGrid);
-            cell.Init(i, null, true);
+            cell.Init(i, true);
             _merchantSlots[i] = cell;
 
         }
@@ -83,7 +79,7 @@ public class TradingWindow : MonoBehaviour
         for (var i = 0; i < target.Inventory.Length; i++)
         {
             var cell = Instantiate(cellPrefab, playerGrid);
-            cell.Init(i, target.Inventory[i]);
+            cell.Init(i, false);
             _playerSlots[i] = cell;
         }
     }
@@ -96,17 +92,16 @@ public class TradingWindow : MonoBehaviour
         acceptButtonLabel.text     = string.Format(acceptButtonFormat, 0);
         totalPrice                 = 0;
         _merchant                  = merchant;
-        moneyDisplay.text          = target.Money.ToString();
         _merchantOriginalInventory = merchant.Inventory.ToArray();
         _playerOriginalInventory   = target.Inventory.ToArray();
         for (var i = 0; i < _playerSlots.Length; i++)
         {
-            _playerSlots[i].AcceptItem(target.Inventory[i]);
+            _playerSlots[i].SetItem(target.Inventory[i]);
         }
         
         for (var i = 0; i < _merchantSlots.Length; i++)
         {
-            _merchantSlots[i].AcceptItem(merchant.Inventory[i]);
+            _merchantSlots[i].SetItem(merchant.Inventory[i]);
         }
         
         GlobalEvents.InterSlotExchange.AddListener(OnExchange);
@@ -139,9 +134,9 @@ public class TradingWindow : MonoBehaviour
         }
     }
 
-    public void UpdateAcceptButton()
+    private void UpdateAcceptButton()
     {
-        acceptButton.interactable = totalPrice != 0 && target.Money >= totalPrice;
+        acceptButton.interactable = target.Money >= totalPrice;
     }
 
     private void Hide()

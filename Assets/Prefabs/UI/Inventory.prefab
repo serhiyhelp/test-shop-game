@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1460537765}
   - component: {fileID: 1460537767}
   - component: {fileID: 1460537766}
+  - component: {fileID: 1266769612985103079}
   m_Layer: 5
   m_Name: Money Display
   m_TagString: Untagged
@@ -136,6 +137,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1266769612985103079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460537764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dfbe42393cbf8d499cdbf8ef9c3a127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  label: {fileID: 1460537766}
 --- !u!1 &240026660709739588
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,8 +348,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1792366259545464755}
   m_HandleRect: {fileID: 2964214501189045688}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.9999999
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1254,7 +1269,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8333143641912429468}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99668354
+  m_Size: 0.99934214
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1293,7 +1308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0.00055944815}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0.0000647197}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &3107839778540714693
@@ -1458,6 +1473,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7013550010472583684, guid: 474ea64d6b3685342939c1b58d003a95, type: 3}
+      propertyPath: filter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013550010472583684, guid: 474ea64d6b3685342939c1b58d003a95, type: 3}
       propertyPath: placeholder
       value: 
       objectReference: {fileID: 3779997944570352090}
@@ -1581,6 +1600,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7013550010472583684, guid: 474ea64d6b3685342939c1b58d003a95, type: 3}
       propertyPath: Filter
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013550010472583684, guid: 474ea64d6b3685342939c1b58d003a95, type: 3}
+      propertyPath: filter
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7013550010472583684, guid: 474ea64d6b3685342939c1b58d003a95, type: 3}

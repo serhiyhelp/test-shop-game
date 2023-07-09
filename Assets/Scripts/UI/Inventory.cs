@@ -15,7 +15,6 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Slot          robeSlot;
     [SerializeField] private RectTransform grid;
     [SerializeField] private Slot          cellPrefab;
-    [SerializeField] private TMP_Text      moneyDisplay;
 
     private Slot[] _gridSlots;
 
@@ -52,10 +51,9 @@ public class Inventory : MonoBehaviour
         robeSlot.Init(target.RobeId, target.EquippedRobe);
         
         _gridSlots = new Slot[target.Inventory.Length];
-        Slot cell = null;
         for (var i = 0; i < target.Inventory.Length; i++)
         {
-            cell = Instantiate(cellPrefab, grid);
+            var cell = Instantiate(cellPrefab, grid);
             cell.Init(i, target.Inventory[i]);
             _gridSlots[i] = cell;
         }
@@ -67,12 +65,11 @@ public class Inventory : MonoBehaviour
         isShown = true;
 
         GlobalEvents.InterSlotExchange.AddListener(OnExchange);
-        moneyDisplay.text = target.Money.ToString();
-        hatSlot.AcceptItem(target.EquippedHat);
-        robeSlot.AcceptItem(target.EquippedRobe);
+        hatSlot.SetItem(target.EquippedHat);
+        robeSlot.SetItem(target.EquippedRobe);
         for (var i = 0; i < _gridSlots.Length; i++)
         {
-            _gridSlots[i].AcceptItem(target.Inventory[i]);
+            _gridSlots[i].SetItem(target.Inventory[i]);
         }
 
         view.DOMoveX(xViewPosition, 0.6f);

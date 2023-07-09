@@ -528,8 +528,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7662848281997141784}
   m_HandleRect: {fileID: 3514491552528533013}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.99999994
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1720,6 +1720,7 @@ GameObject:
   - component: {fileID: 3508194168484617886}
   - component: {fileID: 3508194168484617884}
   - component: {fileID: 3508194168484617887}
+  - component: {fileID: 8095583785034149812}
   m_Layer: 5
   m_Name: Money Display
   m_TagString: Untagged
@@ -1845,6 +1846,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8095583785034149812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3508194168484617873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dfbe42393cbf8d499cdbf8ef9c3a127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  label: {fileID: 3508194168484617887}
 --- !u!1 &3508194168596433740
 GameObject:
   m_ObjectHideFlags: 0
@@ -2218,7 +2233,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 3391245643589832868}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

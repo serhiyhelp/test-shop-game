@@ -51,33 +51,6 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-        
-    }
-
-    public void SwapItems(int id1, int id2)
-    {
-        var item1 = GetItemByInventoryId(id1);
-        var item2 = GetItemByInventoryId(id2);
-
-        PutItemByInventoryId(item1, id2);
-        PutItemByInventoryId(item2, id1);
-    }
-
-    private Item GetItemByInventoryId(int id)
-    {
-        if (id == HatId)
-            return equippedHat;
-        if (id == RobeId)
-            return equippedRobe;
-        return inventory[id];
-    }
     public void PutItemByInventoryId(Item item, int id)
     {
         if (id == HatId)

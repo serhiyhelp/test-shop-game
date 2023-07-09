@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pumpkin
   m_EditorClassIdentifier: 
   title: Pumpkin
-  description: 
+  description: Tasty
   uiView: {fileID: 21300000, guid: b398f31984f975d439ad74fd48570d89, type: 3}
   equippedView: {fileID: 0}
   onGroundView: {fileID: 21300000, guid: b398f31984f975d439ad74fd48570d89, type: 3}
