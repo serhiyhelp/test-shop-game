@@ -15,15 +15,11 @@ public class TradeSlot : MonoBehaviour
     private void OnEnable()
     {
         owner.contentChanged.AddListener(OnOwnerContentChanged);
+        OnOwnerContentChanged(owner.Content?.Item, null);
     }
     private void OnDisable()
     {
         owner.contentChanged.RemoveListener(OnOwnerContentChanged);
-    }
-
-    private void Start()
-    {
-        OnOwnerContentChanged(owner.Content?.Item, null);
     }
 
     private void OnOwnerContentChanged(Item item, Slot _)

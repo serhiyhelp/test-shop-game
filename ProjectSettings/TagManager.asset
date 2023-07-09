@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Mobs
+    uniqueID: 2074916709
+    locked: 0
   - name: Player
     uniqueID: 3792998129
     locked: 0
