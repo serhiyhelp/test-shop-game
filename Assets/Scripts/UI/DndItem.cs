@@ -5,19 +5,24 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DndItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DndItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image         _image;
     [SerializeField] private RectTransform _rectTransform;
+    [SerializeField] private float         tooltipDelay = 0.5f;
 
     private Item _item;
+
+    private bool    trackMouse;
+    private float   lastTimeMouseMoved;
+    private Vector3 lastMousePos;
 
     public Item Item
     {
         get => _item;
         set
         {
-            _item = value;
+            _item         = value;
             _image.sprite = Item.uiView;
         }
     }
@@ -33,7 +38,28 @@ public class DndItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         Item      = item;
         Container = container;
     }
-    
+
+    public void Update()
+    {
+        if (!trackMouse) return;
+
+        if ((Input.mousePosition - lastMousePos).sqrMagnitude > 1 )
+        {
+            lastTimeMouseMoved = Time.time;
+            if (ToolTip.Instance.IsShown)
+            {
+                ToolTip.Instance.Hide();
+            }
+        }
+
+        if (!ToolTip.Instance.IsShown && Time.time - lastTimeMouseMoved > tooltipDelay)
+        {
+            ToolTip.Instance.Show(_item);
+        }
+        
+        lastMousePos = Input.mousePosition;
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         //Container = transform.parent;
@@ -59,4 +85,16 @@ public class DndItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         transform.SetParent(Container.rectTransform);
         _rectTransform.anchoredPosition = Vector2.zero;
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        trackMouse = true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        trackMouse = false;
+    }
+    
+    
 }

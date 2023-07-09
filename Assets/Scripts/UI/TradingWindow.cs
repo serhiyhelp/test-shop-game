@@ -9,15 +9,13 @@ public class TradingWindow : MonoBehaviour
 {
     [SerializeField] private Character  target;
     [SerializeField] private GameObject _view;
-    [SerializeField] private int        cellsPerRow = 5;
-    [SerializeField] private float      spacing     = 50f;
     [SerializeField] private Transform  merchantGrid;
     [SerializeField] private Transform  playerGrid;
     [SerializeField] private Slot       cellPrefab;
     [SerializeField] private TMP_Text   moneyDisplay;
     [SerializeField] private TMP_Text   acceptButtonLabel;
 
-    [SerializeField] private int inventoryLength = 15;
+    [SerializeField] private int inventoryLength = 45;
     
     private Slot[] _playerSlots;
     private Slot[] _merchantSlots;
@@ -48,38 +46,21 @@ public class TradingWindow : MonoBehaviour
 
     private void Start()
     {
-        int column = 0, row = 0;
         _merchantSlots = new Slot[inventoryLength];
         for (var i = 0; i < inventoryLength; i++)
         {
             var cell = Instantiate(cellPrefab, merchantGrid);
-            //cell.rectTransform.anchoredPosition = new Vector2(column * spacing, -row * spacing);
             cell.Init(i, null);
             _merchantSlots[i] = cell;
 
-            column++;
-            if (column >= cellsPerRow)
-            {
-                column = 0;
-                row++;
-            }
         }
 
-        column       = row = 0;
         _playerSlots = new Slot[target.Inventory.Length];
         for (var i = 0; i < target.Inventory.Length; i++)
         {
             var cell = Instantiate(cellPrefab, playerGrid);
-            //cell.rectTransform.anchoredPosition = new Vector2(column * spacing, -row * spacing);
             cell.Init(i, target.Inventory[i]);
             _playerSlots[i] = cell;
-
-            column++;
-            if (column >= cellsPerRow)
-            {
-                column = 0;
-                row++;
-            }
         }
     }
 
@@ -110,6 +91,7 @@ public class TradingWindow : MonoBehaviour
         _merchant.Inventory = _merchantOriginalInventory;
         target.Inventory    = _playerOriginalInventory;
         _view.SetActive(false);
+        _merchant.UpdateInteractionTime();
         GlobalEvents.InterSlotExchange.RemoveListener(OnExchange);
     }
 
@@ -118,8 +100,8 @@ public class TradingWindow : MonoBehaviour
         if (target.Money >= totalPrice)
         {
             target.Money -= totalPrice;
-            
             _view.SetActive(false);
+            _merchant.UpdateInteractionTime();
             GlobalEvents.InterSlotExchange.RemoveListener(OnExchange);
         }
     }

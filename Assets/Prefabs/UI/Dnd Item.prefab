@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _image: {fileID: 7513181797061830009}
   _rectTransform: {fileID: 4481391620433586602}
+  tooltipDelay: 1
 --- !u!222 &6718990541436146232
 CanvasRenderer:
   m_ObjectHideFlags: 0
